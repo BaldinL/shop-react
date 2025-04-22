@@ -1,35 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect } from "react"
+import Footer from "./components/Footer"
+import Header from "./components/Header"
+import AppRoutes from "./components/routes/Routes"
+import Sidebar from "./components/Sidebar"
+import { useProdStore } from "./stores/store"
+import Poster from "./components/Poster"
+import Products from "./components/Products"
+import { getProducts } from "./api/getProudcts"
+import { LinearProgress } from "@mui/material"
+import Categories from "./components/Categories"
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    const store = useProdStore()
+    console.log(store)
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const res = await getProducts()
+                store.fetchProducts(res)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchProducts()
+    }, [])
+    return (
+        <div className="bg-main h-full flex justify-center text-white">
+            <div className="flex flex-col gap-5 w-4/5 items-center">
+                <Header />
+                <div className="flex gap-5 min-h-100 w-full">
+                    <Sidebar />
+                    <Poster />
+                </div>
+                {store.products.length !== 0 ? (
+                    <Products amount={5} />
+                ) : (
+                    <div className="w-full">
+                        <LinearProgress color="success" />
+                    </div>
+                )}
+                <Categories />
+                <Footer />
+            </div>
+            <AppRoutes />
+        </div>
+    )
 }
 
 export default App
