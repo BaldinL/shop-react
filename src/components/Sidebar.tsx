@@ -10,7 +10,6 @@ function Sidebar() {
             try {
                 const res = await getCategories()
                 store.fetchCategories(res)
-                console.log(store)
             } catch (error) {
                 console.log(error)
             }
@@ -18,7 +17,7 @@ function Sidebar() {
         fetchCategories()
     }, [])
     return (
-        <div className="bg-darker rounded-xl h-full min-w-60 self-center p-5">
+        <div className="bg-darker col-start-1 rounded-xl h-full max-w-60 self-center p-5">
             <div className="flex flex-col gap-5">
                 <h1 className="font-bold font-sans text-xl">CATEGORIES</h1>
                 <nav>
@@ -43,7 +42,7 @@ function Sidebar() {
                             <div className="flex flex-col gap-2">
                                 {[...Array(5)].map(() => {
                                     return (
-                                        <li>
+                                        <li key={Date.now() * Math.random()}>
                                             <Skeleton />
                                         </li>
                                     )

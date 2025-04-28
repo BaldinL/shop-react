@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom"
 import logo from "/logo.svg"
-// import heart from "/heart.svg"
-// import { ReactCom } from "../../assets/bag.svg"
-// import { ReactInstance as } from "react"
+import Badge from "@mui/material/Badge"
 import Heart from "../assets/heart.svg?react"
 import Bag from "../assets/bag.svg?react"
 import Glass from "../assets/glass.svg?react"
+import { useUserStore } from "../stores/userStore"
+import { useFormState } from "../stores/userFormState"
 // import jack from "/jackdaniels.svg"
 function Header() {
+    const fav = useUserStore()
+    const formState = useFormState()
+
     return (
         <div className="flex flex-row md:justify-between w-full md:items-center justify-between  md:flex-row  items-center">
             <div>
@@ -15,7 +18,7 @@ function Header() {
                     <img className="md:w-25  w-25 m-5" src={logo} alt="Stuff" />
                 </Link>
             </div>
-            <div className="flex gap-3 justify-center items-center">
+            <div onClick={formState.setIsOpen} className="flex gap-3 justify-center cursor-pointer items-center">
                 <div className="bg-[url('/facebook.svg')] bg-cover bg-center rounded-b-full size-8 md:size-10" />
                 <h1>username</h1>
             </div>
@@ -30,7 +33,10 @@ function Header() {
                 />
             </form>
             <div className="flex gap-5">
-                <Heart />
+                <div className="flex justify-center">
+                    <Badge className="top-1 left-7" badgeContent={fav.favoriteProd.length} color="success" />
+                    <Heart />
+                </div>
                 <Bag />
             </div>
         </div>

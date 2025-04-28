@@ -1,18 +1,17 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
 import AppRoutes from "./components/routes/Routes"
 import Sidebar from "./components/Sidebar"
 import { useProdStore } from "./stores/store"
-import Poster from "./components/Poster"
-import Products from "./components/Products"
 import { getProducts } from "./api/getProudcts"
-import { LinearProgress } from "@mui/material"
-import Categories from "./components/Categories"
+import UserForm from "./components/UserForm"
+import { theme } from "./utils/theme"
+import { ThemeProvider } from "@mui/material"
 
 function App() {
     const store = useProdStore()
-    console.log(store)
+    // const [openUserForm, setOpenUserForm] = useState(false)
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -25,25 +24,19 @@ function App() {
         fetchProducts()
     }, [])
     return (
-        <div className="bg-main h-full flex justify-center text-white">
-            <div className="flex flex-col gap-5 w-4/5 items-center">
-                <Header />
-                <div className="flex gap-5 min-h-100 w-full">
-                    <Sidebar />
-                    <Poster />
-                </div>
-                {store.products.length !== 0 ? (
-                    <Products amount={5} />
-                ) : (
-                    <div className="w-full">
-                        <LinearProgress color="success" />
+        <ThemeProvider theme={theme}>
+            <div className="bg-main z-0 h-full min-h-screen flex justify-center text-white">
+                <div className="flex flex-col gap-5 w-4/5 items-center">
+                    <Header />
+                    <div className="grid grid-cols-[auto_1fr] gap-5 min-h-100 w-full">
+                        <Sidebar />
+                        <AppRoutes />
                     </div>
-                )}
-                <Categories />
-                <Footer />
+                    <Footer />
+                </div>
+                <UserForm />
             </div>
-            <AppRoutes />
-        </div>
+        </ThemeProvider>
     )
 }
 

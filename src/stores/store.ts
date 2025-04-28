@@ -6,7 +6,7 @@ type Category = {
     image: string
     slug: string
 }
-type Product = {
+export type Product = {
     id: number
     title: string
     slug: string

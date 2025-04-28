@@ -1,7 +1,7 @@
 import comp from "/comp.png"
 function Poster() {
     return (
-        <section className=" container bg-darker rounded-xl p-5 w-full h-full">
+        <section className=" bg-darker rounded-xl p-5 w-full h-full">
             <h1 className="font-extrabold text-9xl font-sans opacity-5 font-st">FOR SALE 20%</h1>
             {/* <img src="/comp.png" className="bg-transparent" alt="" />
              */}
