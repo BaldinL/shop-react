@@ -1,22 +1,34 @@
-import React, { useState } from "react"
-import { CreateUser, createUser } from "../api/createUser"
+import React, { Dispatch, useState } from "react"
+import { createUser } from "../api/createUser"
 import { useUserCart } from "../stores/userCart"
-function UserSignUpForm() {
+import toast from "react-hot-toast"
+function UserSignUpForm({ setShowForm }: { setShowForm: Dispatch<React.SetStateAction<"signup" | "login" | "inAccount">> }) {
     const [values, setValues] = useState({
         name: "",
         email: "",
         password: "",
         avatar: ""
     })
-    console.log(values)
-
     const userCart = useUserCart()
-    async function signUpUser(e: React.FormEvent<HTMLButtonElement>) {
+    async function handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
         e.preventDefault()
-        // console.log(values)
-        // createUser(values)
-
+        const myPromise = createUser(values).then((res) => {
+            if (res?.status !== 201) {
+                throw new Error()
+            }
+        })
         try {
+            toast.promise(
+                myPromise,
+                {
+                    loading: "Loading",
+                    success: "You are logged in!",
+                    error: "Ivalid data"
+                },
+                {
+                    duration: 1000
+                }
+            )
             const res = await createUser(values)
             userCart.signUpUser(res?.data)
             console.log(res)
@@ -63,7 +75,6 @@ function UserSignUpForm() {
             />
             <input
                 type="text"
-                // accept="image/png, image/jpeg"
                 id="avatar"
                 name="avatar"
                 onChange={handleChange}
@@ -71,12 +82,12 @@ function UserSignUpForm() {
                 required
                 className="bg-main p-3 focus:outline-green-500 focus:outline-2 rounded-xl w-full "
             />
-            {/* <label htmlFor="avatar" className="bg-main p-3 focus:outline-green-500 focus:outline-2 text-text rounded-xl w-full ">
-                put an image
-            </label> */}
+            <button type="button" onClick={() => setShowForm("login")} className="text-text underline text-base cursor-pointer hover:text-white">
+                I already have an account
+            </button>
             <button
                 type="submit"
-                onClick={signUpUser}
+                onClick={handleSubmit}
                 className="bg-green-500 rounded-xl p-3 font-extrabold text-black text-xl w-full cursor-pointer hover:bg-green-700 active:bg-green-950 transition"
             >
                 Create an Account
