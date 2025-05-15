@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 
 function Footer() {
     return (
-        <section className="bg-darker w-full rounded-2xl p-3 flex items-center justify-between">
+        <section className="bg-darker w-full rounded-2xl  p-3 flex items-center justify-between">
             <Link to="/">
                 <img src={logo} className="w-25 m-5" alt="Logo" />
             </Link>

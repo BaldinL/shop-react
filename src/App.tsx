@@ -28,10 +28,10 @@ function App() {
     }, [])
     return (
         <ThemeProvider theme={theme}>
-            <div className="bg-main z-0 h-full min-h-screen flex justify-center text-white">
-                <div className="flex flex-col gap-5 w-4/5 items-center">
+            <div className="bg-main z-0 min-h-screen flex justify-center text-white">
+                <div className="flex flex-col gap-5 w-4/5 min-h-screen justify-between ">
                     <Header />
-                    <div className="grid grid-cols-[auto_1fr] gap-5 min-h-100 w-full">
+                    <div className="grid grid-cols-[auto_1fr] grow gap-5 min-h-100 w-full">
                         <Sidebar />
                         <AppRoutes />
                     </div>

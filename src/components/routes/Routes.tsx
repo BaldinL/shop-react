@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 import Home from "./Home"
 import SingleProd from "./SingleProd"
+import NoPage from "./NoPage"
 // const SingleProd = lazy(() => import("./SingleProd"))
 
 function AppRoutes() {
@@ -14,6 +15,7 @@ function AppRoutes() {
                     <SingleProd />
                 }
             />
+            <Route path="*" element={<NoPage />} />
         </Routes>
     )
 }
