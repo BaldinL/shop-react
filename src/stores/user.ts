@@ -5,19 +5,7 @@ export type User = {
     email: string
     password: string
     name: string
-    role: "customer" | "admin"
+    role: "customer" | "admin" | "unsigned"
     id: string
+    avatar: string
 }
-// type UseUser = {
-//     user: User
-// }
-// export const useUser = create<UseUser>()(
-//     persist(
-//         (set, get) => ({
-//             user: {}
-//         }),
-//         {
-//             name: "user"
-//         }
-//     )
-// )

@@ -9,10 +9,7 @@ import { Product } from "../stores/store"
 import { useUserCart } from "../stores/userCart"
 function CartDialog({ prod, open, setOpen }: { prod: Product; open: boolean; setOpen: Dispatch<SetStateAction<boolean>> }) {
     const cart = useUserCart()
-    console.log(cart)
-
     const [value, setValue] = useState(0)
-    console.log(typeof value)
     function handleConfirm() {
         cart.addToCart(prod.id, value)
         setOpen((prev) => !prev)
