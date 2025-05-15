@@ -9,7 +9,7 @@ function Products({ products, amount, title }: { products: Product[]; amount: nu
             <h1 className="text-3xl font-bold">{title}</h1>
             <div className="flex gap-3 h-full flex-wrap justify-center">
                 {prod.length !== 0 ? (
-                    prod.map(({ id, title, slug, price, description, category, images }) => {
+                    prod.map(({ id, title, price, category, images }) => {
                         return (
                             <Link key={id} className="flex gap-0 flex-col w-45 justify-center items-center" to={`/products/${id}`} replace>
                                 <img className="rounded-t-xl hover:opacity-60 transition" src={images[0]} alt="" />

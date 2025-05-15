@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { CreateUser, createUser } from "../api/createUser"
+import { createUser } from "../api/createUser"
 import { useUserCart } from "../stores/userCart"
 function UserSignUpForm() {
     const [values, setValues] = useState({

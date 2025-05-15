@@ -96,7 +96,7 @@ function SingleProd() {
                             </Link>
                         </div>
                     </div>
-                    <CartDialog prod={prod} open={open} setOpen={setOpen} />
+                    {prod && <CartDialog prod={prod} open={open} setOpen={setOpen} />}
                 </div>
             ) : (
                 <div className="w-full">
