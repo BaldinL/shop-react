@@ -19,7 +19,7 @@ function Header() {
     const [prodList, setProdList] = useState<Product[]>([])
     const [isSearching, setIsSearching] = useState(false)
     const [value, setValue] = useState("")
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa")
+    // console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa")
 
     function handleChanger(e: ChangeEvent<HTMLInputElement>) {
         setValue(e.target.value)
