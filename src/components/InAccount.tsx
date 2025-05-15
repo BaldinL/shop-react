@@ -8,12 +8,12 @@ function InAccount() {
     const { user, logOut, signUpUser } = useUserCart()
     const [isChanging, setIsChanging] = useState(false)
     const [value, setValue] = useState(user.name)
-    const inputRef = useRef(null)
+    const inputRef = useRef<HTMLInputElement | null>(null)
 
     const handleChanger = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
     }
-    async function handleSubmit(e: SubmitEvent) {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
         const myPromise = updateUser(user.id, { email: user.email, name: value }).then((res) => {
             if (res?.status !== 200) {
@@ -51,7 +51,7 @@ function InAccount() {
                     </div>
                 </div>
             ) : (
-                <form className="flex self-start gap-10 items-center">
+                <form className="flex self-start gap-10 items-center" onSubmit={handleSubmit}>
                     <img src={user.avatar} className="rounded-2xl size-30" alt="" />
                     <div className="bg-darker flex cursor-pointer rounded-xl p-3 ">
                         <input
@@ -64,7 +64,7 @@ function InAccount() {
                         />
                         <button
                             type="submit"
-                            onClick={handleSubmit}
+                            formAction="submit"
                             className="self-center w-fit cursor-pointer hover:opacity-50 active:opacity-20 transition"
                         >
                             <Check />

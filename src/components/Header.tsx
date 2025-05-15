@@ -15,21 +15,19 @@ function Header() {
     const fav = useUserStore()
     const formState = useFormState()
     const userCart = useUserCart()
-    const [isLoading, setIsLoading] = useState(false)
+    // const [isLoading, setIsLoading] = useState(false)
     const [prodList, setProdList] = useState<Product[]>([])
     const [isSearching, setIsSearching] = useState(false)
     const [value, setValue] = useState("")
-    // console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa")
 
     function handleChanger(e: ChangeEvent<HTMLInputElement>) {
         setValue(e.target.value)
 
-        setIsLoading(true)
-        searchProdBySlug(value)
-            .then((res) => {
-                return value.length !== 0 ? setProdList(res?.data) : setProdList([])
-            })
-            .finally(() => setIsLoading(false))
+        // setIsLoading(true)
+        searchProdBySlug(value).then((res) => {
+            return value.length !== 0 ? setProdList(res?.data) : setProdList([])
+        })
+        // .finally(() => setIsLoading(false))
     }
     return (
         <div className="flex flex-row md:justify-between w-full md:items-center justify-between  md:flex-row  items-center">
@@ -62,10 +60,10 @@ function Header() {
                     <div className="flex grow w-full justify-center align-middle outline-none items-center">
                         <input
                             placeholder="search..."
-                            onFocus={() => setIsSearching(true)}
+                            // onFocus={() => setIsSearching(true)}
                             className="flex justify-center w-full align-middle outline-none items-center"
                             type="text"
-                            onBlur={() => setTimeout(() => setIsSearching(false), 110)}
+                            // onBlur={() => setTimeout(() => setIsSearching(false), 110)}
                             value={value}
                             onChange={handleChanger}
                         />
