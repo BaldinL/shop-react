@@ -14,7 +14,7 @@ function SingleProd() {
     const prod = store.products.find((el) => el.id === Number(id))
     const products = useMemo(() => {
         return store.products.filter((el) => el.category.id === prod?.category.id && el.id !== prod.id).sort(() => Math.random() - 0.5)
-    }, [prod])
+    }, [prod, store.products])
     console.log(products)
 
     const [photo, setPhoto] = useState(0)

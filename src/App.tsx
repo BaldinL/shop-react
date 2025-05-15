@@ -22,7 +22,7 @@ function App() {
             }
         }
         fetchProducts()
-    }, [])
+    }, [store])
     return (
         <ThemeProvider theme={theme}>
             <div className="bg-main z-0 h-full min-h-screen flex justify-center text-white">
