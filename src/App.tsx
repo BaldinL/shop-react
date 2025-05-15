@@ -13,6 +13,8 @@ function App() {
     const store = useProdStore()
     // const [openUserForm, setOpenUserForm] = useState(false)
     useEffect(() => {
+        console.log("dfsdj")
+
         const fetchProducts = async () => {
             try {
                 const res = await getProducts()
@@ -22,7 +24,8 @@ function App() {
             }
         }
         fetchProducts()
-    }, [store])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     return (
         <ThemeProvider theme={theme}>
             <div className="bg-main z-0 h-full min-h-screen flex justify-center text-white">
